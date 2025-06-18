@@ -51,7 +51,7 @@ if שעה_נוכחית < 8 or שעה_נוכחית >= 19:
 st.info("🔍 הזן כתובת לבדיקה. לדוגמה: 'משה דיין 10 תל אביב'")
 
 # === שדה כתובת
-st.text_input(":כתובת לבדיקה", key="כתובת")
+st.text_input(": הזן את הכתובת לבדיקה", key="כתובת")
 
 # === לחצן בדיקה
 if st.button("📍 בדוק"):
@@ -132,6 +132,31 @@ if st.session_state["טיימר_פעיל"]:
     time.sleep(1)
     st.session_state["זמן_שניות"] += 1
     st.rerun()
+# === שיתוף ואודות ===
+st.markdown("---")
+st.markdown("### 🔗 שתפו את האפליקציה עם חברים:")
+
+קישור = "https://neriamazon123456789-findparking-app.streamlit.app"
+
+st.code(קישור, language="markdown")
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown(f"[📲 שלח בוואטסאפ](https://wa.me/?text={קישור})", unsafe_allow_html=True)
+with col2:
+    st.markdown(f"[📩 שלח במייל](mailto:?subject=אפליקציית%20חניה%20מגניבה&body={קישור})", unsafe_allow_html=True)
+with col3:
+    st.markdown(f"[🌐 מעבר לאפליקציה]( {קישור} )", unsafe_allow_html=True)
+
+st.markdown("---")
+st.markdown("### ℹ️ אודות")
+st.markdown("""
+אפליקציית **FindParking FP** נוצרה ככלי עזר לאיתור חניה ברחובות מסוימים בתל אביב.
+זוהי גרסת דמו ניסיונית לצורכי המחשה בלבד. אין לראות במידע המוצג המלצה או אחריות חניה בפועל.  
+כל הזכויות שמורות © 2025  
+פותח על ידי [נריה מזון](https://github.com/neriamazon123456789)
+""")
+
 
 
 
