@@ -1,5 +1,7 @@
 import streamlit as st
 import datetime
+import time
+
 
 st.set_page_config(page_title="FindParking", page_icon="🅿️", layout="centered")
 
@@ -98,7 +100,8 @@ with col3:
 
 # רענון כל שנייה בזמן שהטיימר פעיל
 if st.session_state["טיימר_פעיל"]:
-    st.sleep(1)
+       time.sleep(1)
+
     st.session_state["זמן_שניות"] += 1
     st.rerun()
 
