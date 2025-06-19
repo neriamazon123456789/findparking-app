@@ -186,6 +186,8 @@ st.markdown("""
 """)
 with st.expander("🔧 מצב פנימי (session_state)", expanded=False):
     st.write(st.session_state)
+with st.expander("🔧 מצב פנימי (session_state)", expanded=False):
+    st.json(st.session_state)  # מציג בצורה ברורה ומסודרת
 
 
 
