@@ -59,6 +59,10 @@ if st.button("📍 בדוק"):
     אם_לא_בהיסטוריה = כתובת and כתובת not in st.session_state["היסטוריה"]
     if אם_לא_בהיסטוריה:
         st.session_state["היסטוריה"].insert(0, כתובת)
+if st.session_state["כתובת"]:
+    כתובת = st.session_state["כתובת"]
+    קישור_לוויז = f"https://waze.com/ul?q={כתובת.replace(' ', '%20')}&navigate=yes"
+    st.markdown(f"[🔍 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
 
     אם_אסורה = any(כת in כתובת for כת in כתובות_חניה_אסורה)
     אם_כחול = any(כת in כתובת for כת in כתובות_כחול_לבן)
@@ -151,8 +155,8 @@ with col3:
 st.markdown("---")
 st.markdown("### ℹ️ אודות")
 st.markdown("""
-אפליקציית **FindParking FP** נוצרה ככלי עזר לאיתור חניה ברחובות מסוימים בתל אביב.
-זוהי גרסת דמו ניסיונית לצורכי המחשה בלבד. אין לראות במידע המוצג המלצה או אחריות חניה בפועל.  
+אפליקציית **FindParking FP** אפליקנוצרה ככלי עזר לאיתור חניה ברחובות מסוימים בתל אביב
+זוהי גרסת דמו ניסיונית לצורכי המחשה בלבד. אין לראות במידע תחליף לסימון בפועל   
 כל הזכויות שמורות © 2025  
 פותח על ידי [נריה מזון](https://github.com/neriamazon123456789)
 """)
