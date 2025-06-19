@@ -116,16 +116,24 @@ st.markdown("### ⏱️ טיימר חניה")
 st.markdown(f"## 🕒 {ש:02}:{ד:02}:{שנ:02}")
 
 col1, col2, col3 = st.columns(3)
+
 with col1:
-    if st.button("🟢 התחל", key="התחל"):
-        st.session_state["טיימר_פעיל"] = True
+    if st.session_state["טיימר_פעיל"]:
+        if st.button("⏸ הפסק", key="הפסק"):
+            st.session_state["טיימר_פעיל"] = False
+    else:
+        if st.session_state["זמן_שניות"] == 0:
+            if st.button("🟢 התחל", key="התחל"):
+                st.session_state["טיימר_פעיל"] = True
+        else:
+            if st.button("▶️ המשך", key="המשך"):
+                st.session_state["טיימר_פעיל"] = True
+
 with col2:
-    if st.button("⏸ הפסק", key="הפסק"):
-        st.session_state["טיימר_פעיל"] = False
-with col3:
     if st.button("🔁 איפוס", key="איפוס"):
         st.session_state["טיימר_פעיל"] = False
         st.session_state["זמן_שניות"] = 0
+
 
 # מנגנון טיימר – בלולאה שמחזיקה גם אחרי בדיקה
 if st.session_state["טיימר_פעיל"] and "הורץ_פעם_אחת" not in st.session_state:
