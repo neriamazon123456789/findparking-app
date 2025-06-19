@@ -1,6 +1,12 @@
 import streamlit as st
 import time
 import datetime
+# 🛡️ שחזור מצב טיימר לאחר ריצה מחדש
+if "טיימר_שמירה" in st.session_state:
+    st.session_state["טיימר_פעיל"] = st.session_state["טיימר_שמירה"]
+if "שניות_שמירה" in st.session_state:
+    st.session_state["זמן_שניות"] = st.session_state["שניות_שמירה"]
+
 
 st.set_page_config(page_title="FindParking", page_icon="🅿️ FP", layout="centered")
 
@@ -59,9 +65,9 @@ if st.session_state["כתובת"]:
     st.markdown(f"[🔍 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
 
 if st.button("📍 בדוק"):
-    # נשמור את מצב הטיימר לפני הריצה
-    מצב_טיימר_לפני = st.session_state["טיימר_פעיל"]
-    שניות_לפני = st.session_state["זמן_שניות"]
+    # 🕒 שמירה על הטיימר לפני הפעולה
+    st.session_state["טיימר_שמירה"] = st.session_state.get("טיימר_פעיל", False)
+    st.session_state["שניות_שמירה"] = st.session_state.get("זמן_שניות", 0)
 
     כתובת = תקן_עיר_בכתובת(st.session_state["כתובת"])
     כתובת = כתובת.strip().replace(",", "")
@@ -84,9 +90,9 @@ if st.button("📍 בדוק"):
     else:
         st.warning("❓ אין מידע על הכתובת.")
 
-    # נשחזר את מצב הטיימר כמו שהיה לפני
-    st.session_state["טיימר_פעיל"] = מצב_טיימר_לפני
-    st.session_state["זמן_שניות"] = שניות_לפני
+    # 🕒 שחזור מצב הטיימר לאחר הפעולה
+    st.session_state["טיימר_פעיל"] = st.session_state["טיימר_שמירה"]
+    st.session_state["זמן_שניות"] = st.session_state["שניות_שמירה"]
 
 
 with st.expander("📜 היסטוריית כתובות + מועדפים"):
