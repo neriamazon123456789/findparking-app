@@ -1,6 +1,13 @@
 import streamlit as st
 import time
 import datetime
+if st.session_state["טיימר_פעיל"] and "הורץ_פעם_אחת" not in st.session_state:
+    st.session_state["הורץ_פעם_אחת"] = True
+    time.sleep(1)
+    st.session_state["זמן_שניות"] += 1
+    del st.session_state["הורץ_פעם_אחת"]
+    st.rerun()
+
 
 st.set_page_config(page_title="FindParking", page_icon="🅿️ FP", layout="centered")
 
@@ -133,13 +140,6 @@ with col3:
         st.session_state["טיימר_פעיל"] = False
         st.session_state["זמן_שניות"] = 0
 
-# לולאת זמן
-if st.session_state["טיימר_פעיל"] and "הורץ_פעם_אחת" not in st.session_state:
-    st.session_state["הורץ_פעם_אחת"] = True
-    time.sleep(1)
-    st.session_state["זמן_שניות"] += 1
-    del st.session_state["הורץ_פעם_אחת"]
-    st.rerun()
 
 
 st.markdown("---")
