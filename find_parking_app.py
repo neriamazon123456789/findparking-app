@@ -184,6 +184,9 @@ st.markdown("""
 כל הזכויות שמורות © 2025  
 פותח על ידי [נריה מזון](https://github.com/neriamazon123456789)
 """)
+with st.expander("🔧 מצב פנימי (session_state)", expanded=False):
+    st.write(st.session_state)
+
 
 
 
