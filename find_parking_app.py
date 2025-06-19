@@ -189,6 +189,7 @@ with st.expander("🔧 מצב פנימי (session_state)", expanded=False):
 with st.expander("🔧 מצב פנימי (session_state)", expanded=False):
     st.json(st.session_state)  # מציג בצורה ברורה ומסודרת
 
+# אין הצגה של session_state — לשימוש פנימי בלבד
 
 
 
