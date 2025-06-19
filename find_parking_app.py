@@ -58,6 +58,29 @@ if st.session_state["כתובת"]:
 if st.button("📍 בדוק"):
     מצב_לפני = st.session_state["טיימר_פעיל"]
     שניות_לפני = st.session_state["זמן_שניות"]
+# תיבת סימון: האם המשתמש רוצה תזכורת ב־18:30
+if "רוצה_תזכורת" not in st.session_state:
+    st.session_state["רוצה_תזכורת"] = False
+
+if "תל אביב" in st.session_state["כתובת"]:
+    st.session_state["רוצה_תזכורת"] = st.checkbox("🔔 הזכר לי להזיז את הרכב ב־18:30")
+
+# התראה חד פעמית ביום
+if "תאריך_התראה" not in st.session_state or st.session_state["תאריך_התראה"] != datetime.date.today():
+    st.session_state["התראה_18_30"] = False
+    st.session_state["תאריך_התראה"] = datetime.date.today()
+
+# הצגת ההתראה רק אם עונה על כל התנאים
+עכשיו = datetime.datetime.now()
+if (
+    st.session_state["רוצה_תזכורת"] and
+    "תל אביב" in st.session_state["כתובת"] and
+    עכשיו.hour == 18 and עכשיו.minute == 30 and
+    not st.session_state.get("התראה_18_30", False)
+):
+    st.warning("⏰ עוד חצי שעה מסתיימת החניה המותרת (19:00)! אל תשכח להזיז את הרכב 🚗")
+    st.session_state["התראה_18_30"] = True
+
 
     כתובת = תקן_עיר_בכתובת(st.session_state["כתובת"]).replace(",", "")
     אם_לא_בהיסטוריה = כתובת and כתובת not in st.session_state["היסטוריה"]
@@ -154,6 +177,13 @@ with col2:
     )
 with col3:
     st.markdown(f"[🌐 מעבר לאפליקציה]({קישור})", unsafe_allow_html=True)
+st.markdown("---")
+st.markdown("### 💬 משוב")
+
+st.markdown(
+    "[📝 לחץ כאן כדי לתת לנו משוב על האפליקציה](https://forms.gle/QYEdwmEFyEogMnEn9)",
+    unsafe_allow_html=True
+)
 
 # ℹ️ אודות
 st.markdown("---")
@@ -166,13 +196,9 @@ st.markdown("""
 כל הזכויות שמורות © 2025  
 פותח על ידי [נריה מזון](https://github.com/neriamazon123456789)
 """)
-st.markdown("---")
-st.markdown("### 💬 משוב")
 
-st.markdown(
-    "[📝 לחץ כאן כדי לתת לנו משוב על האפליקציה](https://forms.gle/QYEdwmEFyEogMnEn9)",
-    unsafe_allow_html=True
-)
+
+
 
 
 
