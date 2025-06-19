@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 import datetime
-if st.session_state["טיימר_פעיל"] and "הורץ_פעם_אחת" not in st.session_state:
+if st.session_state.get["טיימר_פעיל"] and "הורץ_פעם_אחת" not in st.session_state:
     st.session_state["הורץ_פעם_אחת"] = True
     time.sleep(1)
     st.session_state["זמן_שניות"] += 1
