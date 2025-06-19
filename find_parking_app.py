@@ -4,17 +4,18 @@ import datetime
 
 st.set_page_config(page_title="FindParking", page_icon="🅿️ FP", layout="centered")
 
-# אתחול משתני טיימר
+# אתחול משתני טיימר (חייב להיות לפני כל שימוש!)
 if "טיימר_פעיל" not in st.session_state:
     st.session_state["טיימר_פעיל"] = False
 if "זמן_שניות" not in st.session_state:
     st.session_state["זמן_שניות"] = 0
 
-# מנגנון טיימר תמידי – חייב להיות בראש הקובץ
-if st.session_state.get("טיימר_פעיל", False):
+# הרצת הטיימר מלמעלה בצורה בטוחה
+if st.session_state["טיימר_פעיל"]:
     time.sleep(1)
-    st.session_state["זמן_שניות"] = st.session_state.get("זמן_שניות", 0) + 1
-    st.experimental_rerun()
+    st.session_state["זמן_שניות"] += 1
+    st.rerun()
+
 
 שעה_נוכחית = datetime.datetime.now().hour
 
