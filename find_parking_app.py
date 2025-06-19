@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 import datetime
+# 🛡️ שחזור מצב טיימר לאחר ריצה מחדש if "טיימר_שמירה" in st.session_state: st.session_state["טיימר_פעיל"] = st.session_state["טיימר_שמירה"] if "שניות_שמירה" in st.session_state: st.session_state["זמן_שניות"] = st.session_state["שניות_שמירה"]
 
 st.set_page_config(page_title="FindParking", page_icon="🅿️ FP", layout="centered")
 
