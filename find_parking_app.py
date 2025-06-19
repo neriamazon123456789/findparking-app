@@ -111,6 +111,13 @@ with st.expander("📜 היסטוריית כתובות + מועדפים"):
                     st.rerun()
     else:
         st.markdown("_אין עדיין היסטוריה להצגה._")
+st.markdown("---")
+st.markdown("### ⏱️ טיימר חניה")
+
+ש = st.session_state["זמן_שניות"] // 3600
+ד = (st.session_state["זמן_שניות"] % 3600) // 60
+שנ = st.session_state["זמן_שניות"] % 60
+st.markdown(f"## 🕒 {ש:02}:{ד:02}:{שנ:02}")
 
 
 # ⏱️ מנגנון טיימר עם הגנה מפני כפילות
