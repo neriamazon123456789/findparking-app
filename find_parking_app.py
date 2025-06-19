@@ -53,7 +53,7 @@ st.text_input(": הזן את הכתובת לבדיקה", key="כתובת")
 if st.session_state["כתובת"]:
     כתובת_לוויז = st.session_state["כתובת"]
     קישור_לוויז = f"https://waze.com/ul?q={כתובת_לוויז.replace(' ', '%20')}&navigate=yes"
-    st.markdown(f"[🔍 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
+    st.markdown(f"[🚗 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
 
 if st.button("📍 בדוק"):
     מצב_לפני = st.session_state["טיימר_פעיל"]
@@ -166,6 +166,15 @@ st.markdown("""
 כל הזכויות שמורות © 2025  
 פותח על ידי [נריה מזון](https://github.com/neriamazon123456789)
 """)
+st.markdown("---")
+st.markdown("### 💬 משוב")
+
+st.markdown(
+    "[📝 לחץ כאן כדי לתת לנו משוב על האפליקציה](https://docs.google.com/forms/d/e/1FAIpQLSd3PA_tFH31wujJcg-SrM2C_09ULDsBXcKQTCHeaXv3XOLTxQ/viewform?usp=header)",
+    unsafe_allow_html=True
+)
+
+
 
 
 
