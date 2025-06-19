@@ -52,6 +52,11 @@ st.info("🔍 הזן כתובת לבדיקה. לדוגמה: 'משה דיין 10 
 
 # === שדה כתובת
 st.text_input(": הזן את הכתובת לבדיקה", key="כתובת")
+if st.session_state["כתובת"]:
+    כתובת = st.session_state["כתובת"]
+    קישור_לוויז = f"https://waze.com/ul?q={כתובת.replace(' ', '%20')}&navigate=yes"
+    st.markdown(f"[🔍 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
+
 
 # === לחצן בדיקה
 if st.button("📍 בדוק"):
@@ -59,10 +64,6 @@ if st.button("📍 בדוק"):
     אם_לא_בהיסטוריה = כתובת and כתובת not in st.session_state["היסטוריה"]
     if אם_לא_בהיסטוריה:
         st.session_state["היסטוריה"].insert(0, כתובת)
-if st.session_state["כתובת"]:
-    כתובת = st.session_state["כתובת"]
-    קישור_לוויז = f"https://waze.com/ul?q={כתובת.replace(' ', '%20')}&navigate=yes"
-    st.markdown(f"[🔍 פתח בוויז]({קישור_לוויז})", unsafe_allow_html=True)
 
     אם_אסורה = any(כת in כתובת for כת in כתובות_חניה_אסורה)
     אם_כחול = any(כת in כתובת for כת in כתובות_כחול_לבן)
